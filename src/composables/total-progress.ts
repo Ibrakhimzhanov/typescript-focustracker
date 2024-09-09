@@ -1,24 +1,28 @@
-import { computed } from 'vue'
+import { computed, type ComputedRef } from 'vue'
 import { calculateCompletionPercentage, trackedActivities } from '../activities'
 import { getProgressColorClass } from '../functions'
 import { calculateTrackedActivitySeconds, timelineItems } from '../timeline-items'
+import type { ProgressColorClass } from '../types'
 
-export function useTotalProgress() {
-  const colorClass = computed(() => getProgressColorClass(percentage.value))
+export function useTotalProgress(): {
+  colorClass: ComputedRef<ProgressColorClass>
+  percentage: ComputedRef<number>
+} {
+  const colorClass = computed((): ProgressColorClass => getProgressColorClass(percentage.value))
 
-  const percentage = computed(() =>
+  const percentage = computed((): number =>
     calculateCompletionPercentage(totaltrackedActivitySeconds.value)
   )
 
-  const totaltrackedActivitySeconds = computed(() => {
+  const totaltrackedActivitySeconds = computed((): number => {
     return trackedActivities.value
-      .map((activity) =>
+      .map((activity): number =>
         Math.min(
           calculateTrackedActivitySeconds(timelineItems.value, activity),
           activity.secondsToComplete
         )
       )
-      .reduce((total, seconds) => total + seconds, 0)
+      .reduce((total, seconds): number => total + seconds, 0)
   })
 
   return {
