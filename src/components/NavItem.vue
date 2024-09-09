@@ -1,10 +1,9 @@
 <script setup>
-import BaseIcon from './BaseIcon.vue'
 import { computed } from 'vue'
-import { currentPage, navigate } from '../router'
-import { isNavItemValid } from '../validators'
 import { PAGE_TIMELINE } from '../constants'
+import { currentPage, navigate } from '../router'
 import { scrollToCurrentHour } from '../timeline-items'
+import { isNavItemValid } from '../validators'
 
 const props = defineProps({
   navItem: {

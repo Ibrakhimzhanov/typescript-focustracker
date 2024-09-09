@@ -5,6 +5,7 @@ import App from './App.vue'
 
 import './assets/main.css'
 
+
 syncState()
 
 startCurrentDateTimer()
