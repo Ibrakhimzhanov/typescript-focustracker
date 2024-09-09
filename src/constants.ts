@@ -1,7 +1,6 @@
-import { ICON_CHART_BAR, ICON_CLOCK, ICON_LIST_BULLET } from './icons'
 import { generatePeriodSelectOptions } from './functions'
-
-
+import { ICON_CHART_BAR, ICON_CLOCK, ICON_LIST_BULLET } from './icons'
+import type { PageName } from './types'
 
 export const LOCAL_STORAGE_KEY = 'focustrack'
 
@@ -47,7 +46,7 @@ export const BUTTON_TYPES: ButtonType[] = [
   BUTTON_TYPE_SUCCESS,
   BUTTON_TYPE_WARNING,
   BUTTON_TYPE_DANGER,
-  BUTTON_TYPE_NEUTRAL,
+  BUTTON_TYPE_NEUTRAL
 ]
 
 export const MILLISECONDS_IN_SECOND = 1000
