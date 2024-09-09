@@ -1,5 +1,5 @@
 {
-  "name": "ontrack",
+  "name": "focustrack",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -10,22 +10,20 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@heroicons/vue": "^2.0.17",
-    "g": "^2.0.1",
-    "npm": "^9.6.6",
-    "vue": "^3.2.47"
+    "@heroicons/vue": "^2.1.5",
+    "vue": "^3.5.3"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.2.0",
-    "@vitejs/plugin-vue": "^4.2.1",
-    "@vue/eslint-config-prettier": "^7.1.0",
-    "autoprefixer": "^10.4.14",
-    "eslint": "^8.39.0",
-    "eslint-plugin-vue": "^9.11.0",
-    "postcss": "^8.4.23",
-    "prettier": "^2.8.8",
-    "prettier-plugin-tailwindcss": "^0.2.8",
-    "tailwindcss": "^3.3.2",
-    "vite": "^4.3.4"
+    "@rushstack/eslint-patch": "^1.10.4",
+    "@vitejs/plugin-vue": "^5.1.3",
+    "@vue/eslint-config-prettier": "^9.0.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.10.0",
+    "eslint-plugin-vue": "^9.28.0",
+    "postcss": "^8.4.45",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.6",
+    "tailwindcss": "^3.4.10",
+    "vite": "^5.4.3"
   }
 }
