@@ -4,7 +4,7 @@ import { endOfHour, isToday, now, today, toSeconds } from './time'
 import { stopTimelineItemTimer } from './timeline-item-timer'
 import type { Activity, State, TimelineItem } from './types'
 
-export const timelineItemRefs = ref([])
+export const timelineItemRefs = ref<any>([])
 
 
 
@@ -36,7 +36,7 @@ export function initilizeTimileItems(state: State): void {
   }
 }
 
-export function updateTimelineItem(timelineItem: TimelineItem, fields: any): TimelineItem {
+export function updateTimelineItem(timelineItem: TimelineItem, fields: Partial<TimelineItem>): TimelineItem {
   return Object.assign(timelineItem, fields)
 }
  
