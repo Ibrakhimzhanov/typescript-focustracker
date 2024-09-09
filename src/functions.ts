@@ -6,19 +6,10 @@ import {
   MINUTES_IN_HOUR,
   SECONDS_IN_MINUTE
 } from './constants'
+import { type SelectOption, ProgressColorClass } from './types'
 import { isNull } from './validators'
 
-enum ProgressColorClass {
-  RED = 'bg-red-500',
-  YELLOW = 'bg-yellow-500',
-  BLUE = 'bg-blue-500',
-  GREEN = 'bg-green-500'
-}
 
-interface PeriodSelectOption {
-  value: number
-  label: string
-}
 export function currentHour() {
   return new Date().getHours()
 }
@@ -53,11 +44,11 @@ export function id() {
   return Date.now().toString(36) + Math.random().toString(36).substring(2)
 }
 
-export function generatePeriodSelectOptions(): PeriodSelectOption[] {
+export function generatePeriodSelectOptions(): SelectOption<number>[] {
   const periodsInMinutes = [
     15, 30, 45, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360, 390, 420, 450, 480
   ]
-  return periodsInMinutes.map((periodInMinutes): PeriodSelectOption => ({
+  return periodsInMinutes.map((periodInMinutes): SelectOption<number> => ({
     value: periodInMinutes * SECONDS_IN_MINUTE,
     label: generatePeriodSelectOptionsLabel(periodInMinutes)
   }))
