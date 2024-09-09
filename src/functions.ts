@@ -4,10 +4,9 @@ import {
   MEDIUM_PERCENT,
   MILLISECONDS_IN_SECOND,
   MINUTES_IN_HOUR,
-  PAGE_TIMELINE,
   SECONDS_IN_MINUTE
 } from './constants'
-import { isNull, isPageValid } from './validators'
+import { isNull } from './validators'
 
 enum ProgressColorClass {
   RED = 'bg-red-500',
@@ -38,18 +37,6 @@ export function formatSeconds(seconds: number): string{
   return utc.substring(utc.indexOf(':') - 2, utc.indexOf(':') + 6)
 }
 
-export function normalizePageHash() {
-  const page = window.location.hash.slice(1)
-
-  if (isPageValid(page)) return page
-
-  window.location.page = PAGE_TIMELINE
-
-  return PAGE_TIMELINE
-}
-export function id() {
-  return Date.now().toString(36) + Math.random().toString(36).substring(2)
-}
 
 export function normalizeSelectValue(value: any): any {
   return isNull(value) || isNaN(value) ? value : +value
@@ -61,6 +48,9 @@ export function getProgressColorClass(percentage: number): ProgressColorClass {
   if (percentage < HUNDRED_PERCENT) return ProgressColorClass.BLUE
 
   return ProgressColorClass.GREEN
+}
+export function id() {
+  return Date.now().toString(36) + Math.random().toString(36).substring(2)
 }
 
 export function generatePeriodSelectOptions(): PeriodSelectOption[] {

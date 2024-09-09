@@ -1,7 +1,7 @@
 import { ICON_CHART_BAR, ICON_CLOCK, ICON_LIST_BULLET } from './icons'
 import { generatePeriodSelectOptions } from './functions'
 
-type PageName = typeof PAGE_TIMELINE | typeof PAGE_ACTIVITIES | typeof PAGE_PROGRESS
+
 
 export const LOCAL_STORAGE_KEY = 'focustrack'
 
@@ -14,7 +14,7 @@ interface NavItem {
   icon: any
 }
 
-export const NAV_ITEMS = [
+export const NAV_ITEMS: NavItem[] = [
   {
     page: PAGE_TIMELINE,
     icon: ICON_CLOCK
