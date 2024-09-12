@@ -1,7 +1,7 @@
-<script setup>
-import { routes, currentPage } from './router'
+<script setup lang="ts">
 import TheHeader from './components/TheHeader.vue'
 import TheNav from './components/TheNav.vue'
+import { routes, currentPage } from './router'
 </script>
 <template>
   <TheHeader />

@@ -1,12 +1,10 @@
-import { computed, ref, watch } from 'vue'
+import { type ComponentPublicInstance, computed, ref, watch } from 'vue'
 import { HOURS_IN_DAY, MIDNIGHT_HOUR } from './constants'
 import { endOfHour, isToday, now, today, toSeconds } from './time'
 import { stopTimelineItemTimer } from './timeline-item-timer'
-import type { Activity, State, TimelineItem } from './types'
+import type { Activity, State, TimelineItem, Hour } from './types'
 
-export const timelineItemRefs = ref<any>([])
-
-
+export const timelineItemRefs = ref<ComponentPublicInstance[] | null>(null)
 
 export const timelineItems = ref<TimelineItem[]>([])
 
@@ -36,10 +34,13 @@ export function initilizeTimileItems(state: State): void {
   }
 }
 
-export function updateTimelineItem(timelineItem: TimelineItem, fields: Partial<TimelineItem>): TimelineItem {
+export function updateTimelineItem(
+  timelineItem: TimelineItem,
+  fields: Partial<TimelineItem>
+): TimelineItem {
   return Object.assign(timelineItem, fields)
 }
- 
+
 export function resetTimelineItemActivities(
   timelineItems: TimelineItem[],
   activity: Activity
@@ -64,11 +65,14 @@ export function calculateTrackedActivitySeconds(
 }
 
 export function scrollToCurrentHour(isSmooth = false): void {
-  scrollToHour(today().getHours(), isSmooth)
+  scrollToHour(today().getHours() as Hour, isSmooth)
 }
 
-export function scrollToHour(hour: number, isSmooth = true): void {
-  const el: any = hour === MIDNIGHT_HOUR ? document.body : timelineItemRefs.value[hour - 1].$el
+export function scrollToHour(hour: Hour, isSmooth = true): void {
+  const el: HTMLBodyElement | HTMLLIElement =
+    hour === MIDNIGHT_HOUR || !timelineItemRefs.value
+      ? document.body
+      : timelineItemRefs.value[hour - 1].$el
   el.scrollIntoView({ behavior: isSmooth ? 'smooth' : 'instant' })
 }
 
@@ -82,16 +86,17 @@ function resetTimelineItems(): void {
 }
 
 function syncIdleSeconds(lastActiveAt: Date): void {
-  updateTimelineItem(activeTimelineItem.value as any, {
+  if (!activeTimelineItem.value) return
+  updateTimelineItem(activeTimelineItem.value, {
     activitySeconds:
-      (activeTimelineItem.value as any).activitySeconds + calculateIdleSeconds(lastActiveAt)
+      activeTimelineItem.value.activitySeconds + calculateIdleSeconds(lastActiveAt)
   })
 }
 
 function calculateIdleSeconds(lastActiveAt: Date): number {
   return lastActiveAt.getHours() === today().getHours()
-    ? toSeconds((today() as any) - (lastActiveAt as any))
-    : toSeconds((endOfHour(lastActiveAt) as any) - (lastActiveAt as any))
+    ? toSeconds(today().getTime() - lastActiveAt.getTime())
+    : toSeconds(endOfHour(lastActiveAt).getTime() - lastActiveAt.getTime())
 }
 function filterTimelineItemsByActivity(
   timelineItems: TimelineItem[],
@@ -101,7 +106,7 @@ function filterTimelineItemsByActivity(
 }
 
 function generateTimelineItems(): TimelineItem[] {
-  return [...Array(HOURS_IN_DAY).keys()].map(
+  return ([...Array(HOURS_IN_DAY).keys()] as Hour[]).map(
     (hour): TimelineItem => ({
       hour,
       activityId: null,

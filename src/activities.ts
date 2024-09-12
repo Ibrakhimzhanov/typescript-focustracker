@@ -13,7 +13,7 @@ export const activitySelectOptions = computed<SelectOption[]>(() =>
 )
 
 export function initializeActivities(state: State): void {
-  activities.value = state.activities || []
+  (activities as any).value = state.activities || []
 }
 
 export function createActivity(activity: Activity): void {

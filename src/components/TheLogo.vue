@@ -1,15 +1,15 @@
-<script setup>
-import { PAGE_TIMELINE } from '../constants'
+<script setup lang="ts">
 import { currentPage, navigate } from '../router'
 import { scrollToCurrentHour } from '../timeline-items'
+import { PageName } from '../types';
 
-function handleClick() {
-  currentPage.value === PAGE_TIMELINE ? scrollToCurrentHour(true) : navigate(PAGE_TIMELINE)
+function handleClick(): void {
+  currentPage.value === PageName.TIMELINE ? scrollToCurrentHour(true) : navigate(PageName.TIMELINE)
 }
 </script>
 
 <template>
-  <a :href="`#${PAGE_TIMELINE}`" @click="handleClick">
-    <img src="../assets/img/logo.png" alt="Logotype" class="h-9" />
+  <a :href="`#${PageName.TIMELINE}`" @click="handleClick">
+    <img src="../assets/img/logo.jpg" alt="Logotype" class="h-9" />
   </a>
 </template>

@@ -1,44 +1,21 @@
 import { generatePeriodSelectOptions } from './functions'
-import { ICON_CHART_BAR, ICON_CLOCK, ICON_LIST_BULLET } from './icons'
-import type { ButtonType, NavItem } from './types'
+import { type NavItem, IconName, PageName } from './types'
 
 export const LOCAL_STORAGE_KEY = 'focustrack'
 
-export const PAGE_TIMELINE = 'timeline'
-export const PAGE_ACTIVITIES = 'activities'
-export const PAGE_PROGRESS = 'progress'
-
-
-
 export const NAV_ITEMS: NavItem[] = [
   {
-    page: PAGE_TIMELINE,
-    icon: ICON_CLOCK
+    page: PageName.TIMELINE,
+    icon: IconName.CLOCK
   },
   {
-    page: PAGE_ACTIVITIES,
-    icon: ICON_LIST_BULLET
+    page: PageName.ACTIVITIES,
+    icon: IconName.LIST_BULLET
   },
   {
-    page: PAGE_PROGRESS,
-    icon: ICON_CHART_BAR
+    page: PageName.PROGRESS,
+    icon: IconName.CHART_BAR
   }
-]
-
-
-
-export const BUTTON_TYPE_PRIMARY = 'primary'
-export const BUTTON_TYPE_SUCCESS = 'success'
-export const BUTTON_TYPE_WARNING = 'warning'
-export const BUTTON_TYPE_DANGER = 'danger'
-export const BUTTON_TYPE_NEUTRAL = 'neutral'
-
-export const BUTTON_TYPES: ButtonType[] = [
-  BUTTON_TYPE_PRIMARY,
-  BUTTON_TYPE_SUCCESS,
-  BUTTON_TYPE_WARNING,
-  BUTTON_TYPE_DANGER,
-  BUTTON_TYPE_NEUTRAL
 ]
 
 export const MILLISECONDS_IN_SECOND = 1000
